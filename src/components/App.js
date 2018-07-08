@@ -1,6 +1,8 @@
 import React from 'react';
 
 import FruitBasket from './FruitBasket';
+import Filter from './Filter'
+import FilteredFruitList from './FilteredFruitList'
 
 class App extends React.Component {
   constructor(){
@@ -36,13 +38,10 @@ class App extends React.Component {
 
   render(){
     return(
-      <div>
-        <FruitBasket
-        handleFilterChange={this.handleFilterChange}
-        appState={this.state}
-        handleFetch={this.fetchFilters}
-        />
-      </div>
+      <FruitBasket>
+        <Filter handleChange={this.handleFilterChange} fetchFilters={this.fetchFilters} filters={this.state.filters}/>
+        <FilteredFruitList fruit={this.state.items} filter={this.state.currentFilter}/>
+      </FruitBasket>
     )
   }
 }
